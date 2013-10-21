@@ -8,6 +8,8 @@ include::pii-phi.adoc[]
 
 include::rest-apis.adoc[]
 
+include::cryptography/00index.adoc[]
+
 = Language Standards
 
 include::css/00index.adoc[]

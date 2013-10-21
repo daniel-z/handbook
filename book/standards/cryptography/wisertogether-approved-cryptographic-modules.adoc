@@ -1,0 +1,16 @@
+
+.Approved Cryptographic Modules
+[format="csv",options="header"]
+|======================================================================================================================
+Function,   Platform,  Cryptographic Module,   Algorithms,   FIPS Cert#
+Transport: IPSec, Cisco ASA, Cisco ASA 5505 5510 5520 5540 555 5580-20 and 5580-40 Security Appliances, HMAC SHA AES, 1436
+Transport: HTTPS, RedHat 5,  Red Hat Enterprise Linux 5 OpenSSL Cryptographic Module, AES,  1320
+Transport: SSH, RedHat 5, Red Hat Enterprise Linux 5 OpenSSH-Server Cryptographic Module,  AES, 1384
+At Rest: Administration, RedHat 5, Centrify Cryptographic Module,  AES SHA, 1604
+At Rest: Application, RedHat 5,  Red Hat Enterprise Linux 5 OpenSSL Cryptographic Module, AES, 1320
+At Rest: dmcrypt, RedHat 5, Red Hat Enterprise Linux 5 Kernel Crypto API Cryptographic Module, AES,  1387
+At Rest: PGP, RedHat 5, Gnu Privacy Guard, RSA,
+Transport: HTTPS, Windows Server 2008 R2,  Windows Server 2008 R2 Enhanced Cryptographic Provider (RSAENH),  AES,  1337
+Transport: RDS, Windows Server 2008 R2,  Windows Server 2008 R2 Enhanced Cryptographic Provider (RSAENH),  AES,  1337
+At Rest: EFS, Windows Server 2008 R2, Windows Server 2008 R2 Enhanced Cryptographic Provider (RSAENH), AES,  1337
+|======================================================================================================================

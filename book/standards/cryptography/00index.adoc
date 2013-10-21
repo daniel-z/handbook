@@ -1,0 +1,14 @@
+== WiserTogether Cryptography Standards
+
+In order to ensure information in transit and at rest is adequately secure, cryptography should used. Care should be taken when selecting hash and encryption algorithms, and in selecting impelementions. This standard provides guidance as to the appropriate selection and usage of cryptographic functions. This standard is based upon the fips-140list. Whenever possible, cryptographic requirements should be implemented using FIPS 140 validated modules, and configured to meet the FIPS 140 security policies.
+
+.Cryptography Usage Standards
+[options="headers"]
+|===================================================================
+| Information Class |       At Rest         |   In Transit
+|Unclassified       | None required         |   None required.
+|Internal Use       | None required         |   SHA2, AES256
+|Confidential       | SHA2, AES256          |   SHA2, AES256
+|===================================================================
+
+include::wisertogether-approved-cryptographic-modules.adoc[]
