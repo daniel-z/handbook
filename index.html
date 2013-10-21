@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="generator" content="Asciidoctor 0.1.4">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A Pragmatic Developers Handbook</title>
+<title>WiserTogether Developers Handbook</title>
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
 article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary { display: block; }
@@ -424,9 +424,9 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 </head>
 <body class="book toc2 toc-left">
 <div id="header">
-<h1>A Pragmatic Developers Handbook</h1>
+<h1>WiserTogether Developers Handbook</h1>
 <span id="author" class="author">Erik LaBianca</span><br>
-<span id="email" class="email">&lt;<a href="mailto:erik.labianca@gmail.com">erik.labianca@gmail.com</a>&gt;</span><br>
+<span id="email" class="email">&lt;<a href="mailto:erik.labianca@wisertogether.com">erik.labianca@wisertogether.com</a>&gt;</span><br>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel0">
@@ -456,6 +456,7 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <ul class="sectlevel1">
 <li><a href="#commit-messages">Commit Messages</a></li>
 <li><a href="#rest-api-conventions">REST API Conventions</a></li>
+<li><a href="#_wisertogether_cryptography_standards">WiserTogether Cryptography Standards</a></li>
 </ul>
 </li>
 <li><a href="#_language_standards">Language Standards</a></li>
@@ -1572,6 +1573,137 @@ in JS-based clients.</p>
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_wisertogether_cryptography_standards">WiserTogether Cryptography Standards</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In order to ensure information in transit and at rest is adequately secure, cryptography should used. Care should be taken when selecting hash and encryption algorithms, and in selecting impelementions. This standard provides guidance as to the appropriate selection and usage of cryptographic functions. This standard is based upon the fips-140list. Whenever possible, cryptographic requirements should be implemented using FIPS 140 validated modules, and configured to meet the FIPS 140 security policies.</p>
+</div>
+<table class="tableblock frame-all grid-all" style="width:100%; ">
+<caption class="title">Table 1. Cryptography Usage Standards</caption>
+<colgroup>
+<col style="width:33%;">
+<col style="width:33%;">
+<col style="width:33%;"> 
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Information Class</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">At Rest</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In Transit</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Unclassified</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None required</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None required.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Internal Use</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None required</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SHA2, AES256</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Confidential</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SHA2, AES256</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SHA2, AES256</p></td>
+</tr>
+</tbody>
+</table>
+
+<table class="tableblock frame-all grid-all" style="width:100%; ">
+<caption class="title">Table 2. Approved Cryptographic Modules</caption>
+<colgroup>
+<col style="width:20%;">
+<col style="width:20%;">
+<col style="width:20%;">
+<col style="width:20%;">
+<col style="width:20%;"> 
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Function</th>
+<th class="tableblock halign-left valign-top">Platform</th>
+<th class="tableblock halign-left valign-top">Cryptographic Module</th>
+<th class="tableblock halign-left valign-top">Algorithms</th>
+<th class="tableblock halign-left valign-top">FIPS Cert#</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Transport: IPSec</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cisco ASA</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cisco ASA 5505 5510 5520 5540 555 5580-20 and 5580-40 Security Appliances</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HMAC SHA AES</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1436</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Transport: HTTPS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">RedHat 5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Red Hat Enterprise Linux 5 OpenSSL Cryptographic Module</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AES</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1320</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Transport: SSH</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">RedHat 5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Red Hat Enterprise Linux 5 OpenSSH-Server Cryptographic Module</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AES</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1384</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">At Rest: Administration</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">RedHat 5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Centrify Cryptographic Module</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AES SHA</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1604</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">At Rest: Application</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">RedHat 5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Red Hat Enterprise Linux 5 OpenSSL Cryptographic Module</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AES</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1320</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">At Rest: dmcrypt</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">RedHat 5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Red Hat Enterprise Linux 5 Kernel Crypto API Cryptographic Module</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AES</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1387</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">At Rest: PGP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">RedHat 5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Gnu Privacy Guard</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">RSA</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Transport: HTTPS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Windows Server 2008 R2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Windows Server 2008 R2 Enhanced Cryptographic Provider (RSAENH)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AES</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1337</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Transport: RDS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Windows Server 2008 R2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Windows Server 2008 R2 Enhanced Cryptographic Provider (RSAENH)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AES</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1337</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">At Rest: EFS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Windows Server 2008 R2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Windows Server 2008 R2 Enhanced Cryptographic Provider (RSAENH)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AES</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1337</p></td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
 <h1 id="_language_standards" class="sect0">Language Standards</h1>
 <div class="sect1">
 <h2 id="javascript-standards">Javascript Standards</h2>
@@ -2551,7 +2683,7 @@ file.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2013-10-21 01:34:41 EDT
+Last updated 2013-10-21 11:32:24 EDT
 </div>
 </div>
 </body>
