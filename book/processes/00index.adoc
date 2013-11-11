@@ -1,4 +1,5 @@
 = Processes and Workflows
 
+include::github-create-pr.adoc[]
 include::code-merging.adoc[]
 include::github-pr-merge-squash.adoc[]
